@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import {getRestaurants} from '../redux/actionCreators'
 import { connect } from 'react-redux'
-import RestaurantCard from "../components/RestaurantCard"
+import { RestaurantCard } from "../components"
 
 function RestaurantIndex({getRestaurants, restaurants}){
-  useEffect(() => restaurants.length === 0 && getRestaurants(), [restaurants])
+  useEffect(getRestaurants, [getRestaurants])
 
   return <div className="cards">
     {restaurants.map(restaurant => <RestaurantCard {...restaurant} key={restaurant.id}/>)}

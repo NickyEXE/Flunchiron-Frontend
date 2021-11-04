@@ -1,12 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import RestaurantIndex from './containers/RestaurantIndex';
+import { RestaurantIndex, RestaurantShow } from './components'
+import { Switch, Route } from 'react-router-dom'
+
 
 function App() {
   return (
     <>
       <h1>FEED</h1>
-      <RestaurantIndex/>
+      <Switch>
+        <Route path="/restaurants/:id"><RestaurantShow/></Route>
+        <Route path="/restaurants"><RestaurantIndex/></Route>
+      </Switch>
     </>
   );
 }
