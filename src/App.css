@@ -105,3 +105,19 @@ textarea {
   background-color: yellow;
   color: black;
 }
+
+/* stolen from w3 schools: https://www.w3schools.com/howto/howto_css_loader.asp */
+.loader {
+  border: 100px solid #f3f3f3; /* Light grey */
+  border-top: 100px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

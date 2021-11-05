@@ -4,3 +4,12 @@ export const getRestaurants = () => {
   .then(restaurants => dispatch({type: "GET_RESTAURANTS", payload: restaurants})
   )
 }
+
+export const getRestaurant = (id) => {
+  return dispatch => fetch(`http://localhost:3000/restaurants/${id}`)
+  .then(res => res.json())
+  .then(restaurant => dispatch({type: "GET_RESTAURANT", payload: restaurant})
+  )
+}
+
+export const clearRestaurant = () => ({type: "CLEAR_RESTAURANT"})
