@@ -12,7 +12,10 @@ const initialRestaurant = {
 
 const initialState = {
   restaurants: [],
-  selectedRestaurant: initialRestaurant
+  selectedRestaurant: initialRestaurant,
+  user: {
+    username: ""
+  }
 }
 
 export function reducer(state=initialState, action){
