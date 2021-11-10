@@ -26,6 +26,8 @@ export function reducer(state=initialState, action){
       return {...state, selectedRestaurant: action.payload};
     case "CLEAR_RESTAURANT":
       return {...state, selectedRestaurant: initialRestaurant};
+    case "SET_USER":
+      return {...state, user: action.payload};
     default:
       return {...state}
   }
