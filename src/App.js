@@ -3,15 +3,19 @@ import { RestaurantIndex, RestaurantShow, Nav, Auth } from './components'
 // import RestaurantIndex from "./containers/RestaurantIndex"
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { useEffect } from 'react'
+import { autoLogin } from './redux/actionCreators'
 
 
-function App(props) {
-  console.log(props)
+function App({user, autoLogin}) {
+
+  useEffect(() => localStorage.token && autoLogin(), [autoLogin])
+
   return (
     <>
       <h1>FEED</h1>
       <Nav/>
-      { props.user.username ?
+      { user.username ?
       <Switch>
         <Route path="/restaurants/:id"><RestaurantShow/></Route>
         <Route path="/restaurants"><RestaurantIndex/></Route>
@@ -25,4 +29,4 @@ function App(props) {
 
 const mapStateToProps = (state) => ({user: state.user})
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {autoLogin})(App);
