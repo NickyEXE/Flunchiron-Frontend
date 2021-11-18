@@ -33,8 +33,8 @@ input {
 }
 
 .cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
   justify-content: space-around;
 }
 
@@ -108,14 +108,16 @@ textarea {
 
 /* stolen from w3 schools: https://www.w3schools.com/howto/howto_css_loader.asp */
 .loader {
-  border: 100px solid #f3f3f3; /* Light grey */
-  border-top: 100px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  text-align: center;
-  animation: spin 2s linear infinite;
+  border: 40px solid #ff69b4;
+  border-top: 40px solid #9400ff;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  animation: spin 1s linear infinite;
+  margin: 20vh auto;
 }
+
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
