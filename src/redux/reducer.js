@@ -7,15 +7,18 @@ const initialRestaurant = {
   address: "",
   kindOfFood: "",
   zipCode: null,
-  id: null
+  id: null,
+  reviews: []
+}
+
+const initialUser = {
+  username: ""
 }
 
 const initialState = {
   restaurants: [],
   selectedRestaurant: initialRestaurant,
-  user: {
-    username: ""
-  }
+  user: initialUser
 }
 
 export function reducer(state=initialState, action){
@@ -28,6 +31,10 @@ export function reducer(state=initialState, action){
       return {...state, selectedRestaurant: initialRestaurant};
     case "SET_USER":
       return {...state, user: action.payload};
+    case "ADD_REVIEW":
+      return {...state, selectedRestaurant: {...state.selectedRestaurant, reviews: [action.payload, ...state.selectedRestaurant.reviews]}}
+    case "LOGOUT":
+      return {...state, user: initialUser}
     default:
       return {...state}
   }

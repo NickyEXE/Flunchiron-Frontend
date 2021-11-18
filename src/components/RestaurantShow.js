@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getRestaurant, clearRestaurant } from '../redux/actionCreators'
 import { useEffect } from 'react'
+import { Reviews, ReviewForm } from './'
 
 function RestaurantShow({getRestaurant, name, url, lat, long, imageUrl, address, kindOfFood, zipCode, clearRestaurant, id}){
   const routeId = useParams().id
@@ -19,6 +20,8 @@ function RestaurantShow({getRestaurant, name, url, lat, long, imageUrl, address,
     <img src={imageUrl} alt={name}/>
     <p>{kindOfFood}</p>
     <p>{address}</p>
+    < ReviewForm />
+    < Reviews />
   </div>
 
   return id ? loadedPage() : spinner()

@@ -44,6 +44,24 @@ export const submitLogin = (user) => {
   })
 }
 
+export const submitReview = (review, restaurantId) => {
+  return dispatch => fetch(`http://localhost:3000/restaurants/${restaurantId}/reviews`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify(review)
+  })
+  .then(res => {
+    if (res.ok) {
+      res.json().then(review => dispatch({type: "ADD_REVIEW", payload: review}))
+    } else {
+      res.json().then(res => alert(res.errors))
+    }
+  })
+}
+
 export const autoLogin = () => {
   return dispatch => fetch("http://localhost:3000/me", {
     headers: {
@@ -55,4 +73,11 @@ export const autoLogin = () => {
     localStorage.token = response.token
     dispatch({type: "SET_USER", payload: response.user})
   })
+}
+
+export const logout = () => {
+  return dispatch => {
+    localStorage.clear()
+    dispatch({type: "LOGOUT"})
+  }
 }
