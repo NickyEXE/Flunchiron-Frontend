@@ -1,12 +1,14 @@
+const api = process.env.REACT_APP_API
+
 export const getRestaurants = () => {
-  return dispatch => fetch("http://localhost:3000/restaurants")
+  return dispatch => fetch(api + "/restaurants")
   .then(res => res.json())
   .then(restaurants => dispatch({type: "GET_RESTAURANTS", payload: restaurants})
   )
 }
 
 export const getRestaurant = (id) => {
-  return dispatch => fetch(`http://localhost:3000/restaurants/${id}`)
+  return dispatch => fetch(api + `/restaurants/${id}`)
   .then(res => res.json())
   .then(restaurant => dispatch({type: "GET_RESTAURANT", payload: restaurant})
   )
@@ -15,7 +17,7 @@ export const getRestaurant = (id) => {
 export const clearRestaurant = () => ({type: "CLEAR_RESTAURANT"})
 
 export const submitSignup = (user) => {
-  return dispatch => fetch("http://localhost:3000/users", {
+  return dispatch => fetch(api + "/users", {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ export const submitSignup = (user) => {
 }
 
 export const submitLogin = (user) => {
-  return dispatch => fetch("http://localhost:3000/sessions", {
+  return dispatch => fetch(api + "/sessions", {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +39,7 @@ export const submitLogin = (user) => {
 }
 
 export const submitReview = (review, restaurantId) => {
-  return dispatch => fetch(`http://localhost:3000/restaurants/${restaurantId}/reviews`, {
+  return dispatch => fetch(api + `/restaurants/${restaurantId}/reviews`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ export const submitReview = (review, restaurantId) => {
 }
 
 export const autoLogin = () => {
-  return dispatch => fetch("http://localhost:3000/me", {
+  return dispatch => fetch(api + "/me", {
     headers: {
       'Authorization': localStorage.token
     }
