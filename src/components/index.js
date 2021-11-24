@@ -5,4 +5,5 @@ export { default as Auth } from './Auth';
 export { default as Nav } from './Nav';
 export { default as ReviewCard } from './ReviewCard';
 export { default as ReviewForm } from './ReviewForm';
+export { default as SearchForm } from './SearchForm';
 export { default as Reviews } from '../containers/Reviews';

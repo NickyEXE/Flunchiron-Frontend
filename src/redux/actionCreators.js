@@ -1,10 +1,33 @@
 const api = process.env.REACT_APP_API
 
-export const getRestaurants = () => {
-  return dispatch => fetch(api + "/restaurants")
+function graphQl(query){
+  return fetch(api + "/graphql", {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify({ query }),
+  })
+}
+
+
+export const getRestaurants = (arr=[]) => {
+  const args = arr.map(obj => `${Object.keys(obj)}: "${obj[Object.keys(obj)]}"`).join(", ")
+  return dispatch => graphQl(`
+    {
+      restaurants ${args && `(${args})`} {
+        name
+        id
+        imageUrl
+        kindOfFood
+      }
+    }
+  `)
   .then(res => res.json())
-  .then(restaurants => dispatch({type: "GET_RESTAURANTS", payload: restaurants})
-  )
+  .then(({data}) => {
+    dispatch({type: "GET_RESTAURANTS", payload: data.restaurants})
+  })
 }
 
 export const getRestaurant = (id) => {

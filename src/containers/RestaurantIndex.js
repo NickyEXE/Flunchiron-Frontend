@@ -1,14 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {getRestaurants} from '../redux/actionCreators'
 import { connect } from 'react-redux'
-import { RestaurantCard } from "../components"
+import { RestaurantCard, SearchForm } from "../components"
 
 function RestaurantIndex({getRestaurants, restaurants}){
   useEffect(getRestaurants, [getRestaurants])
 
-  return <div className="cards">
+  return <>
+  <SearchForm/>
+  <div className="cards">
     {restaurants.map(restaurant => <RestaurantCard {...restaurant} key={restaurant.id}/>)}
   </div>
+  </>
 }
 
 const mapStateToProps = (state) => {
